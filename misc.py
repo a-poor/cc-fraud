@@ -1,15 +1,20 @@
-import time, pickle
+import time
+import pickle
+
+import numpy as np
+import pandas as pd
 
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
 
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
 
-def train_test_val_split(X,y,test_pct=0.3,val_pct=0.33):
-    X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=test_pct)
-    X_val, X_test, y_val, y_test = train_test_split(X_train,y_train,test_size=val_pct)
-    return X_train, X_val, X_test, y_train, y_val, y_test
+# def train_test_val_split(X,y,test_pct=0.3,val_pct=0.33):
+#     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=test_pct)
+#     X_val, X_test, y_val, y_test = train_test_split(X_train,y_train,test_size=val_pct)
+#     return X_train, X_val, X_test, y_train, y_val, y_test
 
 def show_confusion(y_true,y_pred,log_transform=False):
     c = confusion_matrix(y_true,y_pred)
@@ -21,7 +26,7 @@ def show_confusion(y_true,y_pred,log_transform=False):
         index=["Pred -","Pred +"]
     )
     sns.heatmap(mat)
-    
+    return
     
 def strftime():
     return time.strftime("%Y.%m.%d.%H.%M.%S")
